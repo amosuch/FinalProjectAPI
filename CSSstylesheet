@@ -1,0 +1,52 @@
+.header-section
+{
+    height: 50px;
+    width: 400px;
+    color: navy;
+    font-size: 3em;
+    margin: auto;
+    border: solid 1px black;
+}
+
+.container-body
+{
+    height: 350px;
+    width: 800px;
+    margin: auto;
+    border: solid 1px black;
+    background-color: lightgrey;
+}
+
+button
+{
+    height: 25px;
+    width: 100px;
+}
+
+form
+{
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+#checkboxColor
+{
+height: 20px;
+width: 20px;
+}
+
+#checkboxGrey
+{
+    height: 20px;
+    width: 20px;
+}
+
+
+footer
+{
+    height: 20px;
+    width: 400px;
+    margin: auto;
+    border: solid black 1px;
+}
+
