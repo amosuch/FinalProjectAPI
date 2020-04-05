@@ -1,0 +1,54 @@
+<style>
+    button
+    {
+        height: 100px;
+        width: 200px;
+    }
+
+    input
+    {
+        height: 50px;
+        width: 50px;
+    }
+
+</style>
+<body>
+<button id="picBtn">Press Me for Pics</button>
+<div id="image-holder"></div>
+<input type="checkbox" id="grayCheck" onclick = "grayScale()">
+<script>
+var img=null;
+
+function clickForPic(){
+let imgPromise = new Promise(function(resolve, reject){
+    img = new Image();
+    img.addEventListener('load', resolve(img));
+    img.addEventListener('error', reject('Could not load image'));
+    img.src = "https://picsum.photos/200/300/?random";
+});
+
+
+imgPromise.then(function(fromResolve){
+console.log('The image has loaded. Yay!');
+let node = document.getElementById('image-holder');
+node.appendChild(img);
+}).catch(function(fromReject){
+console.log(fromReject);
+})
+}
+
+document.getElementById("picBtn").addEventListener("click", clickForPic);
+
+function grayScale(){
+
+    var checkBox = document.getElementById("grayCheck");
+    if(checkBox.checked == true){
+        document.getElementById("image-holder").style.filter = "grayscale(100%)";
+;
+    } if(checkBox.checked == false) {
+        document.getElementById("image-holder").style.filter = "none";
+    }
+}
+
+</script>
+</body>
