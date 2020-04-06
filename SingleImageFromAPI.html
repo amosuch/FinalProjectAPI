@@ -1,21 +1,28 @@
 <style>
     button
     {
-        height: 100px;
+        height: 75px;
         width: 200px;
     }
 
     input
     {
-        height: 50px;
+        height: 20px;
         width: 50px;
     }
+
+
+
 
 </style>
 <body>
 <button id="picBtn">Press Me for Pics</button>
+<br/>
+<br/>
 <div id="image-holder"></div>
-<input type="checkbox" id="grayCheck" onclick = "grayScale()">
+<label for="checkbox">Grayscale Image</label><input type="checkbox" id="grayCheck" onclick = "grayScale()">
+<label for="width" id="widthLabel">Width</label> <input type="text" id="widthInput">
+<label for="height" id="heightLabel">Height</label> <input type="text" name="" id="heightInput">
 <script>
 var img=null;
 
@@ -24,13 +31,16 @@ let imgPromise = new Promise(function(resolve, reject){
     img = new Image();
     img.addEventListener('load', resolve(img));
     img.addEventListener('error', reject('Could not load image'));
-    img.src = "https://picsum.photos/200/300/?random";
+    img.src = "https://picsum.photos/200/300/?" + new Date().getTime();
 });
 
 
 imgPromise.then(function(fromResolve){
 console.log('The image has loaded. Yay!');
 let node = document.getElementById('image-holder');
+while(node.firstChild){
+    node.removeChild(node.firstChild);
+}
 node.appendChild(img);
 }).catch(function(fromReject){
 console.log(fromReject);
@@ -40,15 +50,22 @@ console.log(fromReject);
 document.getElementById("picBtn").addEventListener("click", clickForPic);
 
 function grayScale(){
-
-    var checkBox = document.getElementById("grayCheck");
+var checkBox = document.getElementById("grayCheck");
     if(checkBox.checked == true){
         document.getElementById("image-holder").style.filter = "grayscale(100%)";
-;
+
     } if(checkBox.checked == false) {
         document.getElementById("image-holder").style.filter = "none";
     }
 }
+
+// changeWidth(){
+
+// }
+
+// document.getElementById('widthInput') = img.style.width;
+// document.getElementById('heightInput') = img.style.height;
+// document.getElementById('submitBtn').addEventListener("click",);
 
 </script>
 </body>
