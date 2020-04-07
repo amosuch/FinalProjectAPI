@@ -1,17 +1,27 @@
 <style>
-    button
+    #picBtn
     {
         height: 75px;
         width: 200px;
     }
 
-    input
+    #widthInput
     {
         height: 20px;
         width: 50px;
     }
 
+    #heightInput
+    {
+        height: 20px;
+        width: 50px;
+    }
 
+    img
+    {
+        height: 200px;
+        width: 300px;
+    }
 
 
 </style>
@@ -20,9 +30,12 @@
 <br/>
 <br/>
 <div id="image-holder"></div>
+<div></div>
+<label for="width">Width:</label> <input type="text" input name="width" id="widthInput">
+<label for="height">Height:</label> <input type="text" input name="height" id="heightInput"><div></div>
+<button type="reset">Reset</button>
+<button type="submit" id="submitBtn">Submit</button><div></div>
 <label for="checkbox">Grayscale Image</label><input type="checkbox" id="grayCheck" onclick = "grayScale()">
-<label for="width" id="widthLabel">Width</label> <input type="text" id="widthInput">
-<label for="height" id="heightLabel">Height</label> <input type="text" name="" id="heightInput">
 <script>
 var img=null;
 
@@ -31,7 +44,7 @@ let imgPromise = new Promise(function(resolve, reject){
     img = new Image();
     img.addEventListener('load', resolve(img));
     img.addEventListener('error', reject('Could not load image'));
-    img.src = "https://picsum.photos/200/300/?" + new Date().getTime();
+    img.src = "https://picsum.photos/200/300/?random" + new Date().getTime();
 });
 
 
@@ -47,7 +60,9 @@ console.log(fromReject);
 })
 }
 
-document.getElementById("picBtn").addEventListener("click", clickForPic);
+document.getElementById('picBtn').addEventListener("click", clickForPic);
+document.getElementById('submitBtn').addEventListener("click", changeDems);
+
 
 function grayScale(){
 var checkBox = document.getElementById("grayCheck");
@@ -59,13 +74,15 @@ var checkBox = document.getElementById("grayCheck");
     }
 }
 
-// changeWidth(){
 
-// }
+var img = document.getElementById('img');
 
-// document.getElementById('widthInput') = img.style.width;
-// document.getElementById('heightInput') = img.style.height;
-// document.getElementById('submitBtn').addEventListener("click",);
+function changeDems(){
+    let width = document.getElementById('widthInput').value;
+    let height = document.getElementById('heightInput').value;
+    img.src=`https://picsum.photos/${width}/${height}/?random`;
+  }
+
 
 </script>
 </body>
